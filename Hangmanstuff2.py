@@ -17,7 +17,7 @@ HANGMANPICS = ['''
 
  =========''', '''
 
-+---+
+   +---+
 
    |   |
    0
@@ -31,7 +31,7 @@ HANGMANPICS = ['''
 
  =========''', '''
 
- +---+
+   +---+
 
    |   |
    0
@@ -45,7 +45,7 @@ HANGMANPICS = ['''
 
  =========''', '''
 
- +---+
+   +---+
 
    |   |
    0
@@ -59,7 +59,7 @@ HANGMANPICS = ['''
 
  =========''', '''
 
- +---+
+   +---+
 
    |   |
    0
@@ -73,7 +73,7 @@ HANGMANPICS = ['''
 
  =========''', '''
 
- +---+
+   +---+
 
    |   |
    0
@@ -103,37 +103,44 @@ HANGMANPICS = ['''
 
 misses = 0
 myWord = "hello"
-tries = int(input("How many tries should you have?"))
+noList = []
 myList = list(myWord)
 count = 0
 length = len(myList)
 guessList = []
+tries = len(myList) + int(input("How many extra misses should you have?"))
 while tries > 0:
 	
-	tries = tries - 1
-	guess = input("Input a letter : ")
+	guess = input("Guess a letter : ")
 
 	for letter in myList:
 		guessList.append("_")
 
 	if guess in  myList:
-		print("Letter is in word")
-		for x in range(0, length):
-			if myList[x] == guess:
-			 guessList[x] = guess
+		count = 0
+		for letter in myList:
+			if letter == guess:
+				guessList[count] = guess
+			count += 1
 	else:
 		print("Letter is not in word")
-		print("Guessed incorrect:" + guess)
+		print("Guessed incorrect : " + guess)
 		misses += 1
+		tries = tries - 1
+		no2List = noList.append(guess)
 
-	if not "_" in guessList:
-		print("You Won!  The word was " + myWord)
-	else:
-		print("You have " + str(tries) + " tries remaining")
 	print(HANGMANPICS[misses])
+	guessList = guessList[:len(myList)]
 	print(guessList)
-
-	
+	print("Missed letters : " + str(noList))
+	if not "_" in guessList:
+		print("You Won! The word was " + myWord)
+		break
+	else:
+		print("You have " + str(tries) + " misses remaining")
+	if tries == 0:
+		print("Game over, you lost")
+		break
 
 
 	
