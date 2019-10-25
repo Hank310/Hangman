@@ -59,9 +59,9 @@ HANGMANPICS = ['''
  =========''']
 
 misses = 0
-myWord = "hello"
+myWord = ["hello", "potato", "egg", "sponge", "cow", "a", "the", "beach", "keyboard", "file", "hangman", "python", "opportunity", "random", "russia", "wrong", "hemorrhage"]
 noList = []
-myList = list(myWord)
+myList = random.choose(myWord)
 count = 0
 length = len(myList)
 guessList = []
@@ -86,7 +86,7 @@ while tries > 0:
     tries = tries - 1
     no2List = noList.append(guess)
 
-  print(HANGMANPICS[misses])
+  print(HANGMANPICS[misses])-
   guessList = guessList[:len(myList)]
   print(guessList)
   print("Missed letters : " + str(noList))
